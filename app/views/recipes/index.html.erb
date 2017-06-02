@@ -1,0 +1,42 @@
+<div class="page-header">
+  <h1>
+    Recipes
+
+    <a href="/recipes/new" class="btn btn-lg btn-success">New Recipe</a>
+
+  </h1>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped table-hover">
+      <tr>
+
+        <th>Dish</th>
+
+        <th>Ingredient</th>
+
+        <th>Actions</th>
+      </tr>
+
+      <% @recipes.each do |recipe| %>
+      <tr>
+
+        <td><%= recipe.dish.name %></td>
+
+        <td><%= recipe.ingredient_id %></td>
+
+        <td>
+
+          <a href="/recipes/<%= recipe.id %>" class="btn btn-primary">Show</a>
+
+          <a href="/recipes/<%= recipe.id %>/edit" class="btn btn-warning">Edit</a>
+          <a href="/delete_recipe/<%= recipe.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+
+
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

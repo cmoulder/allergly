@@ -1,0 +1,61 @@
+<!-- Validation failure messages -->
+<% if @menu.errors.any? %>
+  <% @menu.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add Menu</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+
+    <form action="/create_menu" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+
+
+      <!-- Label and input for meal_id -->
+
+      <div class="form-group">
+        <label for="meal_id" class="control-label">
+          Meal
+        </label>
+
+
+        <input type="text" id="meal_id" name="meal_id" placeholder="Meal" class="form-control" value="<%= @menu.meal_id %>">
+
+      </div>
+
+
+
+      <!-- Label and input for dish_id -->
+
+      <div class="form-group">
+        <label for="dish_id" class="control-label">
+          Dish
+        </label>
+
+
+        <input type="text" id="dish_id" name="dish_id" placeholder="Dish" class="form-control" value="<%= @menu.dish_id %>">
+
+      </div>
+
+
+
+      <button class="btn btn-success">
+        Create Menu
+      </button>
+      or
+      <a href="/menus">Cancel</a>
+
+    </form>
+
+  </div>
+</div>

@@ -1,0 +1,71 @@
+<!-- Validation failure messages -->
+<% if @dish.errors.any? %>
+  <% @dish.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add Dish</h3>
+
+  <p><h4>Import with <a href="https://ndb.nal.usda.gov/ndb/search/list">NDB Number</a></h4></p>
+
+<form action="/ndb_import" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+
+      <div class="form-group">
+        <label for="ndb" class="control-label">
+        </label>
+        <input type="text" id="ndb" name="ndb" placeholder="NDB" class="form-control" value="">
+      </div>
+
+      <button class="btn btn-success">
+       Import
+      </button>
+</form>
+
+</div>
+
+<p><h4>Or enter manually</h4></p>
+
+<div class="row">
+  <div class="col-md-12">
+
+    <form action="/create_dish" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+
+
+      <!-- Label and input for name -->
+
+      <div class="form-group">
+        <label for="name" class="control-label">
+          Name
+        </label>
+        <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @name %>">
+        <label for="ingredients" class="control-label">
+          Ingredients
+        </label>
+
+        <textarea id="ingredients" name="ingredients" placeholder="Ingredients: Separate with commas" class="form-control" rows="3"><%= @ingredients %></textarea>
+
+      </div>
+
+
+
+      <button class="btn btn-success">
+        Create Dish
+      </button>
+      or
+      <a href="/dishes">Cancel</a>
+
+    </form>
+
+  </div>
+</div>

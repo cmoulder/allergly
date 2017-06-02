@@ -1,0 +1,55 @@
+<!-- Validation failure messages -->
+<% if @dish.errors.any? %>
+<% @dish.errors.full_messages.each do |message| %>
+<div class="alert alert-dismissable alert-danger">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <%= message %>
+</div>
+<% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Please review your new dish: <%= @dish.name %> </h3>
+
+
+  <div class="row">
+    <div class="col-md-12">
+
+      <form action="/finalize_dish" method="post">
+
+        <!-- Hidden input for authenticity token to protect from forgery -->
+        <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+
+        <div class="form-group">
+
+          <label for="new" class="control-label">
+            <p><h4>Ingredients we do not recognize</h4></p>
+          </label>
+          <textarea id="new" name="new" placeholder="New Ingredients" class="form-control" rows="3"><%= @newing %></textarea>
+
+          <label for="existing" class="control-label">
+            <p><h4>Ingredients we recognized</h4></p>
+          </label>
+
+          <div class="row">
+            <div class="col-md-12 mb-2">
+              <% @existingingarray.each do |ing|%>
+              <div class="btn btn-info btn-sm"><%= ing %></div>
+              <% end %>
+            </div>
+          </div>
+
+          <input type="text" id="existing" name="existing" placeholder="Existing Ingredients" class="form-control" value="<%= @existinging %>">
+          <input type="text" id="dishid" name="dishid" placeholder="Dish ID" class="form-control" value="<%= @dish.id %>">
+        </div>
+
+        <button class="btn btn-success">
+          Finalize Dish
+        </button>
+      </form>
+
+    </div>
+  </div>
+
+</div>

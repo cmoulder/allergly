@@ -1,0 +1,75 @@
+<!-- Validation failure messages -->
+<% if @meal.errors.any? %>
+  <% @meal.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add Meal</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+
+    <form action="/create_meal" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+
+
+      <!-- Label and input for user_id -->
+
+      <div class="form-group">
+        <label for="user_id" class="control-label">
+          User
+        </label>
+
+
+        <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @meal.user_id %>">
+
+      </div>
+
+
+
+      <!-- Label and input for date -->
+
+      <div class="form-group">
+        <label for="date" class="control-label">
+          Date
+        </label>
+
+
+        <input type="text" id="date" name="date" placeholder="Date" class="form-control" value="<%= @meal.date %>">
+
+      </div>
+
+
+
+      <!-- Label and input for mood -->
+
+      <div class="form-group">
+        <label for="mood" class="control-label">
+          Mood
+        </label>
+
+
+        <input type="text" id="mood" name="mood" placeholder="Mood" class="form-control" value="<%= @meal.mood %>">
+
+      </div>
+
+
+
+      <button class="btn btn-success">
+        Create Meal
+      </button>
+      or
+      <a href="/meals">Cancel</a>
+
+    </form>
+
+  </div>
+</div>

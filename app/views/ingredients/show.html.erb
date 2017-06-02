@@ -1,0 +1,31 @@
+<div class="page-header">
+  <h3>Ingredient #<%= @ingredient.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+
+      <dt>Name</dt>
+      <dd><%= @ingredient.name %></dd>
+
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+
+      <a href="/ingredients" class="btn btn-primary">
+        Back
+      </a>
+
+      <a href="/ingredients/<%= @ingredient.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_ingredient/<%= @ingredient.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+
+
+    </div>
+  </div>
+</div>
