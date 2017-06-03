@@ -14,13 +14,16 @@
 
         <th>Name</th>
 
+        <th>Ingredients</th>
+
         <th>Actions</th>
       </tr>
 
-      <% @dishes.each do |dish| %>
+      <% @dishes.order('name').each do |dish| %>
       <tr>
 
         <td><%= dish.name %></td>
+        <td><%= dish.ingredients.pluck(:name).join(", ") %> </td>
 
         <td>
 

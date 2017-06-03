@@ -21,15 +21,14 @@ class MealsController < ApplicationController
     @meal = Meal.new
 
 
-    @meal.user_id = params[:user_id]
-
-    @meal.date = params[:date]
-
+    @meal.user_id = current_user.id
+    tempdate=params[:date].to_s
+    @meal.date = tempdate[3,2]+'/'+tempdate[0,2]+'/'+tempdate[6,4]
     @meal.mood = params[:mood]
 
-
-
     save_status = @meal.save
+
+    breakme
 
     if save_status == true
       redirect_to("/meals/#{@meal.id}", :notice => "Meal created successfully.")

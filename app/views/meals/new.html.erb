@@ -1,11 +1,15 @@
+<script src="/assets/javascripts/application-dc28a5c849651bd0aa634d3d5f9dd7d212f3297cb3f063df69216417e53f2317.js"></script>
+<link rel="stylesheet" media="all" href="/assets/stylesheets/application-72d719150b6d66de8e32fd565c30b18e6107e628b66642641e32bede1b490107.css" />
+
+
 <!-- Validation failure messages -->
 <% if @meal.errors.any? %>
-  <% @meal.errors.full_messages.each do |message| %>
-    <div class="alert alert-dismissable alert-danger">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <%= message %>
-    </div>
-  <% end %>
+<% @meal.errors.full_messages.each do |message| %>
+<div class="alert alert-dismissable alert-danger">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <%= message %>
+</div>
+<% end %>
 <% end %>
 
 <div class="page-header">
@@ -20,56 +24,75 @@
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
 
-
-      <!-- Label and input for user_id -->
-
-      <div class="form-group">
-        <label for="user_id" class="control-label">
-          User
-        </label>
-
-
-        <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @meal.user_id %>">
-
-      </div>
-
-
-
       <!-- Label and input for date -->
 
       <div class="form-group">
         <label for="date" class="control-label">
-          Date
+          When did you eat?
         </label>
 
+        <div class="container">
+          <div class="row">
+            <div class='col-sm-6'>
+              <div class="form-group">
+                <div class='input-group date' id='datetimepicker'>
+                  <input type='text' class="form-control" id="date" name="date">
+                  <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <script type="text/javascript">
+            $(function () {
+              $('#datetimepicker').datetimepicker({
+                format: 'L'
 
-        <input type="text" id="date" name="date" placeholder="Date" class="form-control" value="<%= @meal.date %>">
+              });
+            });
+            </script>
+          </div>
+        </div>
 
-      </div>
 
-
-
-      <!-- Label and input for mood -->
-
-      <div class="form-group">
+        <!-- Label and input for mood -->
         <label for="mood" class="control-label">
-          Mood
+          How did you feel after you ate?
         </label>
+        <div class="form-group">
 
+          <label class="mymood">
+            <input type="radio" value="0" name="mood" id="mood">
+            <i class="fa fa-smile-o fa-4x" aria-hidden="true"></i>
 
-        <input type="text" id="mood" name="mood" placeholder="Mood" class="form-control" value="<%= @meal.mood %>">
+          </label>
+          <label class="mymood">
+            <input type="radio" value="1" name="mood" id="mood">
+            <i class="fa fa-meh-o fa-4x" aria-hidden="true"></i>
+          </label>
+          <label class="mymood">
+            <input type="radio" value="2" name="mood" id="mood">
+            <i class="fa fa-frown-o fa-4x" aria-hidden="true"></i>
+          </label>
 
-      </div>
+        </div>
 
+<div class="form-group">
+  <label for="dishes" class="control-label">
+    What did you eat?
+  </label>
 
+  <textarea id="dishes" name="dishes" placeholder="Dishes: Separate with commas" class="form-control" rows="3"><%= @dishes %></textarea>
 
-      <button class="btn btn-success">
-        Create Meal
-      </button>
-      or
-      <a href="/meals">Cancel</a>
-
-    </form>
-
-  </div>
 </div>
+
+        <button class="btn btn-success">
+          Create Meal
+        </button>
+        or
+        <a href="/meals">Cancel</a>
+
+      </form>
+
+    </div>
+  </div>
