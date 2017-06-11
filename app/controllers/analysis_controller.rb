@@ -56,6 +56,7 @@ R.eval <<EOF
 EOF
     @allergies = R.pull "allergens"
     render("analysis/index.html.erb")
+    
   end
 
 end
