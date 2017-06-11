@@ -1,0 +1,70 @@
+<!-- Validation failure messages -->
+<% if @meal.errors.any? %>
+<% @meal.errors.full_messages.each do |message| %>
+<div class="alert alert-dismissable alert-danger">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <%= message %>
+</div>
+<% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Please review your meal for <%= @meal.date %> </h3>
+
+
+  <div class="row">
+    <div class="col-md-12">
+
+      <form action="/finalize_meal" method="post">
+
+        <!-- Hidden input for authenticity token to protect from forgery -->
+        <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+
+        <div class="form-group">
+
+          <label for="new" class="control-label">
+          </label>
+          <% if @newdishes=="" %>
+          <p><h4>Looks like we got understood everything</h4></p>
+          <input type="hidden" id="new" name="new" placeholder="New Dishes" class="form-control"><%= @newdishes %></textarea>
+
+          <% else %>
+
+          <p><h4>Dishes we do not recognize</h4></p>
+          <div class="ptip">Pro Tip: Click your missing dishes to add their ingredients before continuing</div>
+
+          <% @newdishesarray.each do |dish|%>
+          <a href="/dishes/new/<%= dish %>" target="_blank"><div class="btn btn-warning btn-sm extraheight"><%= dish %> <i class="fa fa-external-link fa-fw"></i></div></a>
+          
+          <textarea id="hidden" name="new" placeholder="New Dishes" class="form-control" rows="3"><%= @newdishes %></textarea>
+          <% end %>
+
+
+        <% end %>
+
+        <label for="existing" class="control-label">
+          <p><h4>Dishes we recognized</h4></p>
+        </label>
+
+        <div class="row">
+          <div class="col-md-12 mb-2">
+            <% @existingdishesarray.each do |dish|%>
+            <div class="btn btn-info btn-sm extraheight"><%= dish %></div>
+            <% end %>
+          </div>
+        </div>
+
+        <input type="hidden" id="existing" name="existing" placeholder="Existing Dishes" class="form-control" value="<%= @existingdishes %>">
+        <input type="hidden" id="mealid" name="mealid" placeholder="Meal ID" class="form-control" value="<%= @meal.id %>">
+      </div>
+
+      <button class="btn btn-success">
+        Finalize Meal
+      </button>
+    </form>
+
+  </div>
+</div>
+
+</div>

@@ -9,7 +9,7 @@
 <% end %>
 
 <div class="page-header">
-  <h3>Please review your new dish: <%= @dish.name %> </h3>
+  <h3>Please review your dish: <%= @dish.name %> </h3>
 
 
   <div class="row">
@@ -24,24 +24,29 @@
         <div class="form-group">
 
           <label for="new" class="control-label">
-            <p><h4>Ingredients we do not recognize</h4></p>
           </label>
-          <textarea id="new" name="new" placeholder="New Ingredients" class="form-control" rows="3"><%= @newing %></textarea>
+          <% if @newing=="" %>
+          <p><h4>Looks like we got understood everything</h4></p>
+          <input type="hidden" id="new" name="new" placeholder="New Ingredients" class="form-control"><%= @newing %></textarea>
+          <% else %>
 
+          <p><h4>Ingredients we do not recognize. These will be added to the database:</h4></p>
+          <textarea id="new" name="new" placeholder="New Ingredients" class="form-control" rows="3"><%= @newing %></textarea>
+          <% end %>
           <label for="existing" class="control-label">
-            <p><h4>Ingredients we recognized</h4></p>
+            <p><h4>Ingredients we recognized:</h4></p>
           </label>
 
           <div class="row">
             <div class="col-md-12 mb-2">
               <% @existingingarray.each do |ing|%>
-              <div class="btn btn-info btn-sm"><%= ing %></div>
+              <div class="btn btn-success btn-sm extraheight"><%= ing %></div>
               <% end %>
             </div>
           </div>
 
-          <input type="text" id="existing" name="existing" placeholder="Existing Ingredients" class="form-control" value="<%= @existinging %>">
-          <input type="text" id="dishid" name="dishid" placeholder="Dish ID" class="form-control" value="<%= @dish.id %>">
+          <input type="hidden" id="existing" name="existing" placeholder="Existing Ingredients" class="form-control" value="<%= @existinging %>">
+          <input type="hidden" id="dishid" name="dishid" placeholder="Dish ID" class="form-control" value="<%= @dish.id %>">
         </div>
 
         <button class="btn btn-success">

@@ -9,7 +9,7 @@
 <% end %>
 
 <div class="page-header">
-  <h3>Edit Meal #<%= @meal.id %></h3>
+  <h3>Edit Meal on <%= @meal.date %></h3>
 </div>
 
 <div class="row">
@@ -43,9 +43,30 @@
         </label>
 
 
-        <input type="text" id="date" name="date" placeholder="Date" class="form-control" value="<%= @meal.date %>">
 
-      </div>
+          <div class="row">
+<div class='col-sm-6'>
+              <div class="form-group">
+                <div class='input-group date' id='datetimepicker'>
+                  <input type='text' class="form-control" id="date" name="date">
+                  <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+                </div>
+        </div>
+            </div>
+            <script type="text/javascript">
+            $(function () {
+              $('#datetimepicker').datetimepicker({
+                format: 'L',
+                defaultDate: '<%= @meal.date %>'
+
+              });
+            });
+            </script>
+          </div>
+        </div>
+
 
 
 
@@ -58,6 +79,29 @@
 
 
         <input type="text" id="mood" name="mood" placeholder="Mood" class="form-control" value="<%= @meal.mood %>">
+
+        <label class="mymood">
+          <input type="radio" value="2" name="mood" id="mood" "<% if @meal.mood == 2;%> checked <% end %>"  />
+          <i class="fa fa-frown-o fa-4x" aria-hidden="true"></i>
+        </label>
+        <label class="mymood">
+          <input type="radio" value="1" name="mood" id="mood" "<% if @meal.mood == 1;%> checked <% end %>"/>
+          <i class="fa fa-meh-o fa-4x" aria-hidden="true"></i>
+        </label>
+        <label class="mymood">
+          <input type="radio" value="0" name="mood" id="mood" "<% if @meal.mood == 0;%> checked <% end %>"/>
+          <i class="fa fa-smile-o fa-4x" aria-hidden="true"></i>
+
+        </label>
+
+      </div>
+
+      <div class="form-group">
+        <label for="dishes" class="control-label">
+          Dishes
+        </label>
+
+        <textarea id="dishes" name="dishes" placeholder="Dishes: Separate with commas" class="form-control" rows="3"><%= @meal.dishes.order('name').pluck(:name).join(", ") %></textarea>
 
       </div>
 

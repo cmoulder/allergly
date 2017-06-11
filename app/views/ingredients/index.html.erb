@@ -15,9 +15,10 @@
         <th>Name</th>
 
         <th>Actions</th>
+
       </tr>
 
-      <% @ingredients.each do |ingredient| %>
+      <% @ingredients.order('name').each do |ingredient| %>
       <tr>
 
         <td><%= ingredient.name %></td>
@@ -25,10 +26,10 @@
         <td>
 
           <a href="/ingredients/<%= ingredient.id %>" class="btn btn-primary">Show</a>
-
+          <% if current_user.id==1 %>
           <a href="/ingredients/<%= ingredient.id %>/edit" class="btn btn-warning">Edit</a>
           <a href="/delete_ingredient/<%= ingredient.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
-
+          <% end %>
 
         </td>
       </tr>

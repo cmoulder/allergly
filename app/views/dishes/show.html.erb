@@ -1,13 +1,24 @@
 <div class="page-header">
-  <h3>Dish #<%= @dish.id %></h3>
+  <h3><%= @dish.name %></h3>
 </div>
 
 <div class="row">
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
+<dt> Created By</dt>
+<dd><%= @dish.creator.first_name %></dd>
 
-      <dt>Name</dt>
-      <dd><%= @dish.name %></dd>
+      <dt>Ingredients</dt>
+      <dd>
+
+        <div class="col-md-12 mb-2">
+          <% @dish.ingredients.order('name').each do |ing|%>
+          <div class="btn btn-info btn-sm extraheight"><%= ing.name %></div>
+          <% end %>
+        </div>
+      </dd>
+      <dt>Last Updated</dt>
+      <dd><%= @dish.updated_at %></dd>
 
 
     </dl>

@@ -12,8 +12,6 @@
     <table class="table table-striped table-hover">
       <tr>
 
-        <th>User</th>
-
         <th>Date</th>
 
         <th>Mood</th>
@@ -24,11 +22,18 @@
       <% @meals.each do |meal| %>
       <tr>
 
-        <td><%= meal.user_id %></td>
-
         <td><%= meal.date %></td>
 
-        <td><%= meal.mood %></td>
+        <td>
+
+            <% if meal.mood == 2 %>
+            <i class="fa fa-frown-o fa-2x fa-fw" aria-hidden="true"></i>
+            <% elsif meal.mood == 1 %>
+            <i class="fa fa-meh-o fa-2x fa-fw" aria-hidden="true"></i>
+            <% else %>
+            <i class="fa fa-smile-o fa-2x fa-fw" aria-hidden="true"></i>
+            <% end %>
+          </td>
 
         <td>
 

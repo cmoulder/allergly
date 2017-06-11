@@ -1,23 +1,35 @@
 <div class="page-header">
-  <h3>Meal #<%= @meal.id %></h3>
+  <h3>Meal on <%= @meal.date %></h3>
 </div>
 
 <div class="row">
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
 
-      <dt>User</dt>
-      <dd><%= @meal.user_id %></dd>
-
-
-      <dt>Date</dt>
-      <dd><%= @meal.date %></dd>
-
-
       <dt>Mood</dt>
-      <dd><%= @meal.mood %></dd>
+      <dd>
+        <% if @meal.mood == 2 %>
+        <i class="fa fa-frown-o fa-2x fa-fw" aria-hidden="true"></i>
+        <% elsif @meal.mood == 1 %>
+        <i class="fa fa-meh-o fa-2x fa-fw" aria-hidden="true"></i>
+        <% else %>
+        <i class="fa fa-smile-o fa-2x fa-fw" aria-hidden="true"></i>
+        <% end %>
+      </dd>
 
+      <dt> Dishes</dt>
+      <dd>
+        <% @meal.dishes.order('name').each do |dish|%>
+        <div class="btn btn-info btn-sm extraheight"><%= dish.name %></div>
+        <% end %>
+      </dd>
 
+      <dt> Ingredients </dt>
+      <dd>
+        <% @meal.dishes.map(&:ingredients).flatten.uniq.sort_by(&:"name").each do |ing|%>
+        <div class="btn btn-success btn-sm extraheight"><%= ing.name %></div>
+        <% end %>
+      </dd>
     </dl>
 
     <div class="btn-group btn-group-justified">

@@ -14,7 +14,7 @@
 
         <th>Name</th>
 
-        <th>Ingredients</th>
+        <th>Created By</th>
 
         <th>Actions</th>
       </tr>
@@ -23,15 +23,16 @@
       <tr>
 
         <td><%= dish.name %></td>
-        <td><%= dish.ingredients.pluck(:name).join(", ") %> </td>
+        <td><%= dish.creator.first_name %></td>
 
         <td>
 
           <a href="/dishes/<%= dish.id %>" class="btn btn-primary">Show</a>
 
+          <% if dish.created_by==current_user.id%>
           <a href="/dishes/<%= dish.id %>/edit" class="btn btn-warning">Edit</a>
           <a href="/delete_dish/<%= dish.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
-
+          <% end %>
 
         </td>
       </tr>

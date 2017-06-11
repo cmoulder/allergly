@@ -1,15 +1,15 @@
 <!-- Validation failure messages -->
 <% if @dish.errors.any? %>
-  <% @dish.errors.full_messages.each do |message| %>
-    <div class="alert alert-dismissable alert-danger">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <%= message %>
-    </div>
-  <% end %>
+<% @dish.errors.full_messages.each do |message| %>
+<div class="alert alert-dismissable alert-danger">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <%= message %>
+</div>
+<% end %>
 <% end %>
 
 <div class="page-header">
-  <h3>Edit Dish #<%= @dish.id %></h3>
+  <h3>Edit <%= @dish.name %></h3>
 </div>
 
 <div class="row">
@@ -28,8 +28,12 @@
           Name
         </label>
 
-
         <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @dish.name %>">
+
+        <dt>Ingredients</dt>
+        <textarea id="ingredients" name="ingredients" placeholder="Ingredients: Separate with commas" class="form-control" rows="3"><%= @dish.ingredients.order('name').pluck(:name).join(", ") %></textarea>
+
+
 
       </div>
 

@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   # CREATE
 
   get "/dishes/new", :controller => "dishes", :action => "new"
+  get "/dishes/new/:name", :controller => "dishes", :action => "new"
   post "/create_dish", :controller => "dishes", :action => "create"
   post "/finalize_dish", :controller => "dishes", :action => "finalize"
   post "/ndb_import", :controller => "dishes", :action => "ndb_import"
@@ -70,10 +71,15 @@ Rails.application.routes.draw do
   get "/delete_menu/:id", :controller => "menus", :action => "destroy"
   #------------------------------
 
+  #Routes for Analysis
+  get "/analysis", :controller => "analysis", :action => "index"
+
+
   # Routes for the Meal resource:
   # CREATE
   get "/meals/new", :controller => "meals", :action => "new"
   post "/create_meal", :controller => "meals", :action => "create"
+  post "/finalize_meal", :controller => "meals", :action => "finalize_meal"
 
   # READ
   get "/meals", :controller => "meals", :action => "index"

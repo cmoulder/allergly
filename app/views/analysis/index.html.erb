@@ -1,0 +1,28 @@
+
+<div class="page-header">
+  <h3><%= current_user.first_name %>'s Allergy Analysis</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+
+      <h4>Your top potential food allergies</h4>
+
+
+      <ol>
+
+        <% if @allergies.is_a? String  %>
+        <li><div class="btn btn-success btn-sm extraheight"><%= @allergies.gsub('.', ' ') %></div>
+          <% else %>
+          <% @allergies.each do |allergy|%>
+          <li><div class="btn btn-success btn-sm extraheight"><%= allergy.gsub('.', ' ') %></div>
+            <% end %>
+            <% end %>
+          </ol>
+
+        </dl>
+
+      </div>
+    </div>
+  </div>

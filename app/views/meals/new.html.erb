@@ -28,10 +28,10 @@
 
       <div class="form-group">
         <label for="date" class="control-label">
-          When did you eat?
+          When did you eat? <div class="ptip">Pro Tip: You can enter all of your dishes for the day at the same time</div>
         </label>
 
-        <div class="container">
+
           <div class="row">
             <div class='col-sm-6'>
               <div class="form-group">
@@ -52,7 +52,7 @@
             });
             </script>
           </div>
-        </div>
+
 
 
         <!-- Label and input for mood -->
@@ -61,25 +61,27 @@
         </label>
         <div class="form-group">
 
-          <label class="mymood">
-            <input type="radio" value="0" name="mood" id="mood">
-            <i class="fa fa-smile-o fa-4x" aria-hidden="true"></i>
 
+          <label class="mymood">
+            <input type="radio" value="2" name="mood" id="mood">
+            <i class="fa fa-frown-o fa-4x" aria-hidden="true"></i>
           </label>
           <label class="mymood">
             <input type="radio" value="1" name="mood" id="mood">
             <i class="fa fa-meh-o fa-4x" aria-hidden="true"></i>
           </label>
           <label class="mymood">
-            <input type="radio" value="2" name="mood" id="mood">
-            <i class="fa fa-frown-o fa-4x" aria-hidden="true"></i>
+            <input type="radio" value="0" name="mood" id="mood">
+            <i class="fa fa-smile-o fa-4x" aria-hidden="true"></i>
+
           </label>
+
 
         </div>
 
 <div class="form-group">
   <label for="dishes" class="control-label">
-    What did you eat?
+    What did you eat? <div class="ptip">Pro Tip: Head to your Dishes tab to see our Recipe database. Don't see what you like, add your own Dish.</div>
   </label>
 
   <textarea id="dishes" name="dishes" placeholder="Dishes: Separate with commas" class="form-control" rows="3"><%= @dishes %></textarea>
