@@ -23,11 +23,9 @@
 
         <div class="form-group">
 
-          <label for="new" class="control-label">
-          </label>
+
           <% if @newdishes=="" %>
           <p><h4>Looks like we got understood everything</h4></p>
-          <input type="hidden" id="new" name="new" placeholder="New Dishes" class="form-control"><%= @newdishes %></textarea>
 
           <% else %>
 
@@ -36,35 +34,38 @@
 
           <% @newdishesarray.each do |dish|%>
           <a href="/dishes/new/<%= dish %>" target="_blank"><div class="btn btn-warning btn-sm extraheight"><%= dish %> <i class="fa fa-external-link fa-fw"></i></div></a>
-          
-          <textarea id="hidden" name="new" placeholder="New Dishes" class="form-control" rows="3"><%= @newdishes %></textarea>
+
           <% end %>
 
+          <% end %>
 
-        <% end %>
+          <label for="new" class="control-label">
+          </label>
+          <input type="hidden" id="new" name="new" placeholder="New Dishes" class="form-control" value="<%= @newdishes %>">
+          <br>
 
-        <label for="existing" class="control-label">
-          <p><h4>Dishes we recognized</h4></p>
-        </label>
+          <label for="existing" class="control-label">
+            <p><h4>Dishes we recognized</h4></p>
+          </label>
 
-        <div class="row">
-          <div class="col-md-12 mb-2">
-            <% @existingdishesarray.each do |dish|%>
-            <div class="btn btn-info btn-sm extraheight"><%= dish %></div>
-            <% end %>
+          <div class="row">
+            <div class="col-md-12 mb-2">
+              <% @existingdishesarray.each do |dish|%>
+              <div class="btn btn-info btn-sm extraheight"><%= dish %></div>
+              <% end %>
+            </div>
           </div>
+
+          <input type="hidden" id="existing" name="existing" placeholder="Existing Dishes" class="form-control" value="<%= @existingdishes %>">
+          <input type="hidden" id="mealid" name="mealid" placeholder="Meal ID" class="form-control" value="<%= @meal.id %>">
         </div>
 
-        <input type="hidden" id="existing" name="existing" placeholder="Existing Dishes" class="form-control" value="<%= @existingdishes %>">
-        <input type="hidden" id="mealid" name="mealid" placeholder="Meal ID" class="form-control" value="<%= @meal.id %>">
-      </div>
+        <button class="btn btn-success">
+          Finalize Meal
+        </button>
+      </form>
 
-      <button class="btn btn-success">
-        Finalize Meal
-      </button>
-    </form>
-
+    </div>
   </div>
-</div>
 
 </div>

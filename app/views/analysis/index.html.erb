@@ -1,6 +1,6 @@
 
 <div class="page-header">
-  <h3><%= current_user.first_name %>'s Allergy Analysis</h3>
+  <h1><%= current_user.first_name %>'s Allergy Analysis</h1>
 </div>
 
 <div class="row">
@@ -10,7 +10,7 @@
       <h4>Your top potential food allergies</h4>
 
 
-      <ol>
+      <ul>
 
         <% if @allergies.is_a? String  %>
         <li><div class="btn btn-success btn-sm extraheight"><%= @allergies.gsub('.', ' ') %></div>
@@ -19,7 +19,7 @@
           <li><div class="btn btn-success btn-sm extraheight"><%= allergy.gsub('.', ' ') %></div>
             <% end %>
             <% end %>
-          </ol>
+          </ul>
 
         </dl>
 

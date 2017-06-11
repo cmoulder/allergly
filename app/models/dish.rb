@@ -6,4 +6,6 @@ class Dish < ApplicationRecord
   has_many :menus
   has_many :meals, :through => :menus
 
+  validates :name, :presence => true
+  validates :name, :uniqueness => true
 end
