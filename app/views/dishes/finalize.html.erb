@@ -26,14 +26,14 @@
           <label for="new" class="control-label">
           </label>
           <% if @newing=="" %>
-          <p><h4>Looks like we got understood everything</h4></p>
+          <p><h4>Looks like we understood everything</h4></p>
           <input type="hidden" id="new" name="new" placeholder="New Ingredients" class="form-control"><%= @newing %></textarea>
           <% else %>
 
           <p><h4>Ingredients we do not recognize. These will be added to the database:</h4></p>
           <textarea id="new" name="new" placeholder="New Ingredients" class="form-control" rows="3"><%= @newing %></textarea>
           <% end %>
-          
+
           <label for="existing" class="control-label">
             <p><h4>Ingredients we recognized:</h4></p>
           </label>

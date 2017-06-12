@@ -14,7 +14,7 @@ class DishesController < ApplicationController
 
   def new
     @dish = Dish.new
-    @name = params[:name]
+    @name = params[:name].to_s.downcase
 
     render("dishes/new.html.erb")
   end
@@ -53,7 +53,7 @@ class DishesController < ApplicationController
     save_status = @dish.save
 
     if save_status == true
-      ing = params[:ingredients].split(',').map(&:strip)
+      ing = params[:ingredients].split(',').map(&:strip).map(&:downcase)
       ing.each do |oneingred|
         if Ingredient.where(:name => oneingred).count > 0
           @existingingarray.push(oneingred)
@@ -79,8 +79,8 @@ class DishesController < ApplicationController
     newing = params[:new]
     existinging = params[:existing]
 
-    newingredients = newing.split(',').map(&:strip)
-    existingingredients = existinging.split(',').map(&:strip)
+    newingredients = newing.split(',').map(&:strip).map(&:downcase)
+    existingingredients = existinging.split(',').map(&:strip).map(&:downcase)
     allingredients = existingingredients + newingredients
 
     #Add new ing to ing database
@@ -113,7 +113,7 @@ class DishesController < ApplicationController
 
   def update
     @dish = Dish.find(params[:id])
-    @dish.name = params[:name]
+    @dish.name = params[:name].downcase
     params[:ingredients]
 
     newingarray =  Array.new
@@ -125,7 +125,7 @@ class DishesController < ApplicationController
     if save_status == true
       @dish.recipes.destroy_all
 
-      ing = params[:ingredients].split(',').map(&:strip)
+      ing = params[:ingredients].split(',').map(&:strip).map(&:downcase)
       ing.each do |oneingred|
         if Ingredient.where(:name => oneingred).count > 0
           @existingingarray.push(oneingred)

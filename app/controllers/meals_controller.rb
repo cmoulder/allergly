@@ -30,7 +30,7 @@ class MealsController < ApplicationController
     save_status = @meal.save
 
     if save_status == true
-      dishes = params[:dishes].split(',').map(&:strip)
+      dishes = params[:dishes].split(',').map(&:strip)..map(&:downcase)
       dishes.each do |dish|
         if Dish.where(:name => dish).count > 0
           @existingdishesarray.push(dish)
@@ -56,8 +56,8 @@ class MealsController < ApplicationController
     newd = params[:new]
     existingd = params[:existing]
 
-    newdishes = newd.split(',').map(&:strip)
-    existingingdishes = existingd.split(',').map(&:strip)
+    newdishes = newd.split(',').map(&:strip).downcase
+    existingingdishes = existingd.split(',').map(&:strip).map(&:downcase)
     alldishes = existingingdishes + newdishes
 
     #add all dishes to meal through menu
@@ -98,7 +98,7 @@ class MealsController < ApplicationController
     save_status = @meal.save
 
     if save_status == true
-      dishes = params[:dishes].split(',').map(&:strip)
+      dishes = params[:dishes].split(',').map(&:strip).map(&:downcase)
       dishes.each do |dish|
         if Dish.where(:name => dish).count > 0
           @existingdishesarray.push(dish)

@@ -21,7 +21,7 @@ class IngredientsController < ApplicationController
     @ingredient = Ingredient.new
 
 
-    @ingredient.name = params[:name]
+    @ingredient.name = params[:name].to_s.downcase
 
 
 
